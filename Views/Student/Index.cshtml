@@ -1,0 +1,29 @@
+@using _nett_lmao_work.Models
+@model StudentListViewModel
+@{
+    ViewData["Title"] = "Student Page";
+}
+
+<table border="5" cellpadding="10" cellspacing="10" style="border:dotted">
+    <thead>
+        <tr>
+            <th>Student Id</th>
+            <th>Name</th>
+            <th>Date of Birth</th>
+            <th>Gender</th>
+            <th>Class</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Student in Model._students)
+        {
+            <tr>
+                    <td>@Student.StudentID</td>  
+                    <td>@Student.Name</td>
+                    <td>@Student.DateOfBirth</td>
+                    <td>@Student.Gender</td>
+                    <td>@Student.UniversityClass</td>
+            </tr>
+        }
+    </tbody>
+    
