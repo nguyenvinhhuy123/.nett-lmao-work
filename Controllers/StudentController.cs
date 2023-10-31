@@ -20,6 +20,7 @@ namespace _nett_lmao_work.Controllers
         {
             _logger = logger;
             Student newStudent = new Student();
+
             Console.WriteLine(_students.Count);
         }
         [HttpGet]
@@ -38,8 +39,8 @@ namespace _nett_lmao_work.Controllers
         public IActionResult Create(Student student)
         {
             _students.Add(student);
-            var viewModel = new StudentListViewModel(_students);
-            return View("Index", viewModel);
+            Console.WriteLine(_students.Count);
+            return RedirectToAction("Index", "Student");
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
