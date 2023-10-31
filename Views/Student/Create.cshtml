@@ -1,0 +1,34 @@
+@using _nett_lmao_work.Models
+@model Student
+@{
+    ViewData["Title"] = "Student Page";
+}
+<h1>@ViewData["Title"]</h1>
+@using (Html.BeginForm("Create", "Student"))
+{
+<form class="form-horizontal" asp-action="Create">
+    <div class="form-group">
+        <label class="control-label">StudentID</label>
+        <input asp-for="StudentID" class="form-control" type="text" />
+    </div>
+    <div class="form-group">
+        <label class="control-label">Name</label>
+        <input asp-for="Name" class="form-control" type="text" />
+    </div>
+    <div class="form-group">
+        <label class="control-label">Date of Birth</label>
+        <input asp-for="DateOfBirth" class="form-control" type="date" />
+    </div>
+    <div class="form-group">
+        <label class="control-label">Gender</label>
+        <input asp-for="Gender" class="form-control" type="text" />
+    </div>
+    <div class="form-group">
+        <label class="control-label">Class</label>
+        <input asp-for="UniversityClass" class="form-control" type="text" />
+    </div>
+    <button class="form-group">
+        <input type="submit" value="Create" />
+    </button>
+</form>
+}

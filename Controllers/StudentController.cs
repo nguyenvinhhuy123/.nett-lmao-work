@@ -14,19 +14,12 @@ namespace _nett_lmao_work.Controllers
     [Route("[controller]")]
     public class StudentController : Controller
     {
-        public List<Student> _students;
+        public static List<Student> _students= new List<Student>();
         private readonly ILogger<StudentController> _logger;
         public StudentController(ILogger<StudentController> logger)
         {
             _logger = logger;
             Student newStudent = new Student();
-            _students= new List<Student>();
-            newStudent.StudentID = 0;
-            newStudent.Name = "Honk";
-            newStudent.UniversityClass = "CLC";
-            newStudent.Gender = Gender.Female;
-            newStudent.DateOfBirth = new DateOnly(2000, 1, 21);
-            _students.Add(newStudent);
             Console.WriteLine(_students.Count);
         }
         [HttpGet]
@@ -35,19 +28,19 @@ namespace _nett_lmao_work.Controllers
             var viewModel = new StudentListViewModel(_students);
             return View("Index", viewModel);
         }
-        // [HttpGet]
-        // public IActionResult Create()
-        // {
-        //     return Index();
-        // }
-        // [HttpPost]
-        // public IActionResult Create(Student student)
-        // {
-        //     _students.Append(student);
-        //     return Index();
-        // }
-
-
+        [HttpPost]
+        public IActionResult Index([Bind] string CreateStudent)
+        {
+            if (CreateStudent == "Create")
+                return View("Create");
+            return View();
+        }
+        public IActionResult Create(Student student)
+        {
+            _students.Add(student);
+            var viewModel = new StudentListViewModel(_students);
+            return View("Index", viewModel);
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
