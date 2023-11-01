@@ -20,7 +20,8 @@ namespace _nett_lmao_work.Models
 
         public StudentListViewModel(List<Student> students)
         {
-            _students = students;
+            _students = new List<Student>(students);
+            Console.WriteLine(_students);
         }
     }
 }

@@ -20,27 +20,32 @@ namespace _nett_lmao_work.Controllers
         {
             _logger = logger;
             Student newStudent = new Student();
-
-            Console.WriteLine(_students.Count);
         }
+        [ActionName("Index")]
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index([Bind] Student student)
         {
+            if (student != null)
+            {   
+                _students.Add(student);
+            }
             var viewModel = new StudentListViewModel(_students);
+            Console.WriteLine(viewModel._students);
+            Console.WriteLine(_students.Count);
             return View("Index", viewModel);
         }
-        [HttpPost]
-        public IActionResult Index([Bind] string CreateStudent)
+        public IActionResult Add([Bind] string CreateStudent)
         {
             if (CreateStudent == "Create")
-                return View("Create");
+                return RedirectToAction("Create", "Student");
             return View();
         }
-        public IActionResult Create(Student student)
+        [ActionName("Create")]
+        [HttpPost]
+        public IActionResult Create()
         {
-            _students.Add(student);
-            Console.WriteLine(_students.Count);
-            return RedirectToAction("Index", "Student");
+            Console.WriteLine("add");
+            return View("Create");
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

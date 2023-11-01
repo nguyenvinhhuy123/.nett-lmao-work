@@ -15,16 +15,24 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var Student in Model._students)
+        @if (Model == null)
         {
-            <tr>
-                    <td>@Student.StudentID</td>  
-                    <td>@Student.Name</td>
-                    <td>@Student.DateOfBirth</td>
-                    <td>@Student.Gender</td>
-                    <td>@Student.UniversityClass</td>
-            </tr>
+            <td>true</td>
         }
+        @if (Model != null)
+        {
+            @foreach (var Student in Model._students)
+            {
+                <tr>
+                        <td>@Student.StudentID</td>  
+                        <td>@Student.Name</td>
+                        <td>@Student.DateOfBirth</td>
+                        <td>@Student.Gender</td>
+                        <td>@Student.UniversityClass</td>
+                </tr>
+            }
+        }
+        
     </tbody>
 </table>
 <form class="form-horizontal" asp-action="Index">

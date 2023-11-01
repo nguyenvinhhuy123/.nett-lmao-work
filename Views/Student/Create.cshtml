@@ -1,12 +1,11 @@
 @using _nett_lmao_work.Models
 @model Student
+
 @{
-    ViewData["Title"] = "Student Page";
+    ViewData["Title"] = "Add Student Page";
 }
 <h1>@ViewData["Title"]</h1>
-@using (Html.BeginForm("Create", "Student"))
-{
-<form class="form-horizontal" asp-action="Create">
+<form class="form-horizontal">
     <div class="form-group">
         <label class="control-label">StudentID</label>
         <input asp-for="StudentID" class="form-control" type="text" />
@@ -28,7 +27,6 @@
         <input asp-for="UniversityClass" class="form-control" type="text" />
     </div>
     <button class="form-group">
-        <input type="submit" value="Create" />
+        <input type="submit" value="Create" asp-action="Add" />
     </button>
 </form>
-}
